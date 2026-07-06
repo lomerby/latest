@@ -1,0 +1,13 @@
+com\tutorlog\controller\AuthController.class
+com\tutorlog\model\UserProgress.class
+com\tutorlog\repository\UserProgressRepository.class
+com\tutorlog\repository\UserRepository.class
+com\tutorlog\service\UserService.class
+com\tutorlog\config\SecurityConfig.class
+com\tutorlog\TutorLogApplication.class
+com\tutorlog\model\User.class
+com\tutorlog\model\Lesson.class
+com\tutorlog\controller\AdminController.class
+com\tutorlog\controller\LessonController.class
+com\tutorlog\repository\LessonRepository.class
+com\tutorlog\service\LessonService.class

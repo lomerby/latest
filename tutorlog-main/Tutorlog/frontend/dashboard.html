@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - TutorLog</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-container">
+            <h1>📚 TutorLog</h1>
+            <div class="nav-items">
+                <span id="userEmail" class="user-email"></span>
+                <span id="userSubscription" class="subscription-badge"></span>
+                <button onclick="logout()" class="logout-btn">Logout</button>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <!-- Subscription Section -->
+        <section class="subscription-section">
+            <h2>Your Subscription</h2>
+            <div class="subscription-info">
+                <div>
+                    <p>Current Plan: <strong id="currentPlan"></strong></p>
+                    <p id="expiryInfo" style="color: #666; font-size: 0.9em;"></p>
+                </div>
+                <button onclick="showUpgradeModal()" class="upgrade-btn">Upgrade Plan</button>
+            </div>
+        </section>
+        
+        <!-- Lessons Section -->
+        <section class="lessons-section">
+            <h2>Available Lessons</h2>
+            
+            <div class="filters">
+                <input type="text" id="searchInput" placeholder="Search lessons..." onkeyup="filterLessons()">
+                <select id="subjectFilter" onchange="filterLessons()">
+                    <option value="">All Subjects</option>
+                    <option value="Mathematics">Mathematics</option>
+                    <option value="Physics">Physics</option>
+                    <option value="Chemistry">Chemistry</option>
+                    <option value="English">English</option>
+                    <option value="Biology">Biology</option>
+                    <option value="History">History</option>
+                </select>
+            </div>
+            
+            <div id="lessonsList" class="lessons-grid">
+                <div class="loading">Loading lessons...</div>
+            </div>
+        </section>
+        
+        <!-- Lesson Detail Modal -->
+        <div id="lessonModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeLessonModal()">&times;</span>
+                <h2 id="lessonTitle"></h2>
+                <div id="lessonVideo" style="margin-bottom: 20px;">
+                    <div class="video-placeholder">Video will load here</div>
+                </div>
+                <p id="lessonDescription"></p>
+                <div id="lessonResources">
+                    <h3>📚 Additional Resources</h3>
+                    <div id="pdfLinks"></div>
+                </div>
+                <div class="progress-bar">
+                    <label>Your Progress:</label>
+                    <div class="bar">
+                        <div id="progressFill" class="fill"></div>
+                    </div>
+                    <span id="progressText">0%</span>
+                </div>
+                <button onclick="markAsComplete()" class="complete-btn">✓ Mark as Complete</button>
+            </div>
+        </div>
+        
+        <!-- Upgrade Modal -->
+        <div id="upgradeModal" class="modal">
+            <div class="modal-content">
+                <span class="close" onclick="closeUpgradeModal()">&times;</span>
+                <h2>Upgrade Your Plan</h2>
+                <p style="text-align: center; color: #666; margin-bottom: 30px;">Choose the perfect plan for your learning journey</p>
+                <div class="pricing-cards">
+                    <div class="card">
+                        <h3>FREE</h3>
+                        <p>₦0<span>/month</span></p>
+                        <ul>
+                            <li>✓ 5 Lessons</li>
+                            <li>✓ Basic Content</li>
+                            <li>✗ Video Lessons</li>
+                            <li>✗ Priority Support</li>
+                        </ul>
+                        <button onclick="selectPlan('FREE')" disabled>Current Plan</button>
+                    </div>
+                    <div class="card featured">
+                        <div class="badge">Popular</div>
+                        <h3>BASIC</h3>
+                        <p>₦2,999<span>/month</span></p>
+                        <ul>
+                            <li>✓ All FREE features</li>
+                            <li>✓ 50+ Lessons</li>
+                            <li>✓ Video Lessons</li>
+                            <li>✗ Priority Support</li>
+                        </ul>
+                        <button onclick="selectPlan('BASIC')">Upgrade Now</button>
+                    </div>
+                    <div class="card">
+                        <h3>PREMIUM</h3>
+                        <p>₦5,999<span>/month</span></p>
+                        <ul>
+                            <li>✓ All BASIC features</li>
+                            <li>✓ Unlimited Lessons</li>
+                            <li>✓ Download Resources</li>
+                            <li>✓ Priority Support</li>
+                        </ul>
+                        <button onclick="selectPlan('PREMIUM')">Upgrade Now</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

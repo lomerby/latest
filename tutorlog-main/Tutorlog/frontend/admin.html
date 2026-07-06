@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel - TutorLog</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="navbar">
+        <div class="nav-container">
+            <h1>⚙️ TutorLog - Admin</h1>
+            <button onclick="logout()" class="logout-btn">Logout</button>
+        </div>
+    </div>
+    
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <div class="admin-sidebar">
+            <button class="sidebar-btn active" onclick="showSection('lessons')">📚 Manage Lessons</button>
+            <button class="sidebar-btn" onclick="showSection('users')">👥 Users</button>
+            <button class="sidebar-btn" onclick="showSection('analytics')">📊 Analytics</button>
+        </div>
+        
+        <!-- Main Content -->
+        <div class="admin-content">
+            <!-- Lessons Section -->
+            <section id="lessonsSection" class="admin-section active">
+                <h2>Manage Lessons</h2>
+                
+                <!-- Create Lesson Form -->
+                <div class="form-card">
+                    <h3>➕ Create New Lesson</h3>
+                    <form onsubmit="handleCreateLesson(event)">
+                        <input type="text" id="lessonTitle" placeholder="Lesson Title" required>
+                        <textarea id="lessonDescription" placeholder="Description" required rows="4"></textarea>
+                        
+                        <select id="lessonSubject" required>
+                            <option value="">Select Subject</option>
+                            <option value="Mathematics">Mathematics</option>
+                            <option value="Physics">Physics</option>
+                            <option value="Chemistry">Chemistry</option>
+                            <option value="English">English</option>
+                            <option value="Biology">Biology</option>
+                            <option value="History">History</option>
+                        </select>
+                        
+                        <input type="url" id="youtubeLink" placeholder="YouTube Video Link (e.g., https://youtube.com/watch?v=...)" required>
+                        
+                        <div class="pdf-input-group">
+                            <input type="url" id="pdfLink" placeholder="PDF Resource Link">
+                            <button type="button" onclick="addPdfLink()" class="add-btn">+ Add PDF</button>
+                        </div>
+                        <div id="pdfLinksList" class="pdf-list"></div>
+                        
+                        <select id="requiredSubscription" required>
+                            <option value="FREE">FREE (Accessible to all)</option>
+                            <option value="BASIC">BASIC (Requires BASIC or PREMIUM)</option>
+                            <option value="PREMIUM">PREMIUM (Premium users only)</option>
+                        </select>
+                        
+                        <input type="number" id="duration" placeholder="Duration (minutes)" required min="1">
+                        
+                        <select id="difficulty">
+                            <option value="BEGINNER">Beginner</option>
+                            <option value="INTERMEDIATE">Intermediate</option>
+                            <option value="ADVANCED">Advanced</option>
+                        </select>
+                        
+                        <button type="submit" class="submit-btn">Create Lesson</button>
+                    </form>
+                </div>
+                
+                <!-- Lessons List -->
+                <div class="lessons-table">
+                    <h3>📋 All Lessons</h3>
+                    <table id="lessonsTable">
+                        <thead>
+                            <tr>
+                                <th>Title</th>
+                                <th>Subject</th>
+                                <th>Duration</th>
+                                <th>Subscription Level</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td colspan="5" class="loading">Loading lessons...</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+            
+            <!-- Users Section -->
+            <section id="usersSection" class="admin-section">
+                <h2>Users Management</h2>
+                <div id="usersList" class="users-list">
+                    <div class="loading">Loading users...</div>
+                </div>
+            </section>
+            
+            <!-- Analytics Section -->
+            <section id="analyticsSection" class="admin-section">
+                <h2>Platform Analytics</h2>
+                <div class="stats-cards">
+                    <div class="stat-card">
+                        <h3>👥 Total Users</h3>
+                        <p id="totalUsers">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>📚 Total Lessons</h3>
+                        <p id="totalLessons">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>💎 Premium Users</h3>
+                        <p id="premiumUsers">0</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    
+    <script src="js/admin.js"></script>
+</body>
+</html>
